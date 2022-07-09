@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>E-Mandi</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+        <style>
+            body{
+                background-image: url(/images/img1.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .container{
+                margin-top: 8%;
+            }
+            .row{
+                width: 35%;
+                margin: auto 25px auto auto;
+            }
+            form{
+                background: azure;
+                padding: 35px 30px;
+                border-radius: 20px;
+            }
+            h1{
+                padding-bottom: 10px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        
+            <div class="row">
+                <div >
+                    <form action="/updateListing" method="POST" enctype="multipart/form-data">
+                    <h1 style ="text-align: center">Update Your Product Details</h1>
+                    <div class="form-group">
+			         <label>Title</label>
+                        <input required class="form-control" type="text" value="<%= title %>" name='title' readonly>
+                    </div>
+                    <div class="form-group">
+			         <label>quantity</label>
+                      <input required class="form-control"  type="number" value="<%= stock %>" name="stock" min="1">
+                    </div>
+                    <div class="form-group">
+			         <label>Price</label>
+                     <input required class="form-control" type="text" value="<%= price %>" name="price">
+                    </div>
+		            <div class="form-group">
+		              <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>        
+    </body>
+</html>
+
+
+
+
+	
+	

@@ -1,0 +1,19 @@
+.query_forms{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.update_form,.insert_form,.delete_form{
+    width:20%;
+    margin-bottom:100px;
+}
+
+hr{
+    margin-bottom: 50px;
+}
+
+.signout{
+    float:right;
+    margin:20px;
+}

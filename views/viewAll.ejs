@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+<head>
+	<title>E-Mandi</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+			*{
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+}
+body {
+	background: url(//subtlepatterns.com/patterns/scribble_light.png);
+  font-family: Calluna, Arial, sans-serif;
+  min-height: 1000px;
+}
+#wrap{
+	width: 90%;
+	max-width: 1100px;
+	margin: 50px auto;
+}
+.columns_2 figure{
+   width:49%;
+   margin-right:1%;
+}
+.columns_2 figure:nth-child(2){
+	margin-right: 0;
+}
+.columns_3 figure{
+   width:32%;
+   margin-right:1%;
+}
+.columns_3 figure:nth-child(3){
+	margin-right: 0;
+}
+.columns_4 figure{
+   width:24%;
+   margin-right:1%;
+}
+.columns_4 figure:nth-child(4){
+	margin-right: 0;
+}
+.columns_5 figure{
+   width:19%;
+   margin-right:1%;
+}
+.columns_5 figure:nth-child(5){
+	margin-right: 0;
+}
+#columns figure:hover{
+	-webkit-transform: scale(1.1);
+	-moz-transform:scale(1.1);
+	transform: scale(1.1);
+
+}
+#columns:hover figure:not(:hover) {
+	opacity: 0.4;
+}
+div#columns figure {
+    
+	display: inline-block;
+	background: #FEFEFE;
+	border: 2px solid #FAFAFA;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	margin: 0 0px 15px;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+	padding: 15px;
+	padding-bottom: 5px;
+	background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+	opacity: 1;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+div#columns figure img {
+    height:200px;
+    object-fit: cover;
+/*    overflow:auto;*/
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
+}
+
+div#columns figure figcaption {
+  font-size: .9rem;
+  color: #444;
+  line-height: 1.5;
+  height:60px;
+  font-weight:600;
+  text-overflow:ellipsis;
+}
+
+a.button{
+  padding:10px;
+  background:salmon;
+  margin:10px;
+  display:block;
+  text-align:center;
+  color:#fff;
+  transition:all 1s linear;
+  text-decoration:none;
+  text-shadow:1px 1px 3px rgba(0,0,0,0.3);
+  border-radius:3px;
+  border-bottom:3px solid #ff6536;
+  box-shadow:1px 1px 3px rgba(0,0,0,0.3);
+}
+a.button:hover{
+  background:#ff6536;
+  border-bottom:3px solid salmon;
+  color:#f1f2f3;
+}
+@media screen and (max-width: 960px) { 
+  #columns figure { width: 24%; }
+}
+@media screen and (max-width: 767px) {
+  #columns figure { width:32%;}
+}
+@media screen and (max-width: 600px) {
+  #columns figure { width: 49%;}
+}
+@media screen and (max-width: 500px) {
+  #columns figure { width: 100%;}
+}
+        .column {
+            float: left;
+            max-height: 100%;
+        }
+
+        .left {
+            width: 25%;
+            background: #bbb;
+        }
+
+        .right {
+            width: 75%;
+            background: #abc;
+        }
+        .container{
+            background: #ddd;
+            border-radius: 20px;
+        }
+/*
+        body{background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);}
+        
+*/
+	</style>
+</head>
+    <body>
+        
+    
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Select Your Products</h1>
+                        <p class="lead">Your accessibility Is Our First Preference</p>
+                    </div>
+                <div class="container">
+                <div class="form-group">
+                    <label id='state'>State</label>
+                    <select name="state" id="state1" onchange="changeDisplay(this);">
+                      <option value="">Select State</option>
+                      <option value="All">Show All</option>
+                      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Chandigarh">Chandigarh</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                      <option value="Daman and Diu">Daman and Diu</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Goa">Goa</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                      <option value="Jharkhand">Jharkhand</option>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Lakshadweep">Lakshadweep</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Meghalaya">Meghalaya</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Orissa">Orissa</option>
+                      <option value="Pondicherry">Pondicherry</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Uttaranchal">Uttaranchal</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="West Bengal">West Bengal</option>
+                </select>
+                </div>
+                </div>
+        </div>
+                
+                <div id="wrap">
+                <div id="columns" class="columns_4">
+                    <% for(var i=0;i<results.length;i++){ %>
+              
+             
+              <% if(req.user == undefined){ %>
+                <figure>
+                <img src="/public/images/upload_images/<%= results[i].image %>">
+                <span><%= results[i].title %></span><br>
+                Sold by: <%= results[i].username %><br>
+                <span class="price">₹<%= results[i].price %></span><br>
+                <span class="price"> <%= results[i].state %></span>
+                </figure>
+                <% } else if(req.user.role == "Farmer"){%>
+                  <% } else if(req.user.role == "Wholeseller") { %>
+                    <% if(req.user.username != results[i].username && results[i].role=="Farmer"){ %>
+                      <figure>
+                          <img src="/public/images/upload_images/<%= results[i].image %>">
+                          <span><%= results[i].title %></span><br>
+                          Sold by: <%= results[i].username %><br>
+                          <span class="price">₹<%= results[i].price %></span><br>
+                          <span class="price"> <%= results[i].state %></span>
+                          <form action="/makeTransaction/<%= results[i].title %>/<%= results[i].username %>/<%= results[i].role %>/<%= results[i].price %>/<%= results[i].image %>" method="POST">
+                            <input type="number" name="quantity" max="<%= results[i].stock %>" min="1" required>
+                            <button type="submit" class="btn btn-success">Add to cart<span><i class="ion-ios-add ml-1"></i></span></butoon> 
+                          </form>
+                          </figure>
+                    <% } %>
+                  <% } else if(req.user.role == "Retailer") { %>
+                    <% if(req.user.username != results[i].username && results[i].role=="Wholeseller"){ %>
+                      <figure>
+                          <img src="/public/images/upload_images/<%= results[i].image %>">
+                          <span><%= results[i].title %></span><br>
+                          Sold by: <%= results[i].username %><br>
+                          <span class="price">₹<%= results[i].price %></span><br>
+                          <span class="price"> <%= results[i].state %></span>
+                          <form action="/makeTransaction/<%= results[i].title %>/<%= results[i].username %>/<%= results[i].role %>/<%= results[i].price %>/<%= results[i].image %>" method="POST">
+                            <input type="number" name="quantity" max="<%= results[i].stock %>" min="1" required>
+                            <button type="submit" class="btn btn-success">Add to cart<span><i class="ion-ios-add ml-1"></i></span></butoon> 
+                          </form>
+                          </figure>
+                      <% } %>
+                      <% } else if(req.user.role == "Civilian") { %>
+                        <% if(req.user.username != results[i].username && (results[i].role=="Wholeseller" || results[i].role=="Retailer")){ %>
+                          <figure>
+                              <img src="/public/images/upload_images/<%= results[i].image %>">
+                              <span><%= results[i].title %></span><br>
+                              Sold by: <%= results[i].username %><br>
+                              <span class="price">₹<%= results[i].price %></span><br>
+                              <span class="price"> <%= results[i].state %></span>
+                              <form action="/makeTransaction/<%= results[i].title %>/<%= results[i].username %>/<%= results[i].role %>/<%= results[i].price %>/<%= results[i].image %>" method="POST">
+                                <input type="number" name="quantity" max="<%= results[i].stock %>" min="1" required>
+                                <button type="submit" class="btn btn-success">Add to cart<span><i class="ion-ios-add ml-1"></i></span></butoon> 
+                              </form>
+                              </figure>
+                          <% } %>
+                          <% } %>
+                <!-- <figure>
+                <img src="https://i.imgur.com/sPxEkEI.jpg">
+                <figcaption>Green and Black Flowers</figcaption>
+                <span class="price">$44</span>
+                <a class="button" href="#">Buy Now</a>
+                </figure>
+                
+              <figure>
+                <img src="https://i.imgur.com/S3Umfmb.jpg">
+                <figcaption>Black Dots</figcaption>
+                <span class="price">$44</span>
+                <a class="button" href="#">Buy Now</a>
+                </figure>
+              
+                <figure>
+                <img src="https://i.imgur.com/x1IZjjy.jpg">
+                <figcaption>Red Flowy</figcaption>
+                <span class="price">$44</span>
+                <a class="button" href="#">Buy Now</a>
+                </figure>
+                
+               <figure>
+                 <img src="https://i.imgur.com/Jv8IWKQ.jpg">
+                <figcaption>Yellow Button-Up</figcaption>
+                <span class="price">$44</span>
+                <a class="button" href="#">Buy Now</a>
+                </figure>
+                
+               <figure>
+                 <img src="https://i.imgur.com/MpLejRu.jpg">
+                <figcaption>Put a Bird On It</figcaption>
+                 <span class="price">$44</span>
+                 <a class="button" href="#">Buy Now</a>
+                </figure>
+              
+                <figure>
+                <img src="https://i.imgur.com/SZmPJ7W.jpg">
+                <figcaption>Polka Dots</figcaption>
+                <span class="price">$44</span>
+                <a class="button" href="#">Buy Now</a>
+                </figure>	
+              
+               <figure>
+                <img src="https://i.imgur.com/OiEMgMx.jpg">
+                <figcaption>Blue Spots</figcaption>
+                 <span class="price">$44</span>
+                 <a class="button" href="#">Buy Now</a>
+                </figure>
+              
+                <figure>
+                <img src="https://i.imgur.com/HolvggB.jpg">
+                <figcaption>Pink Dots</figcaption>
+                  <span class="price">$44</span>
+                  <a class="button" href="#">Buy Now</a>
+                </figure>	 -->
+                <% }%>
+                </div>
+            </div>
+            <script>
+                   var changeDisplay = function change(element){
+                       var state = document.getElementById("state1").value;
+                       console.log(state);
+                       self.location ="/viewProducts/"+ state + "/" ;
+                   }
+                </script>
+       
+</body>
+</html>

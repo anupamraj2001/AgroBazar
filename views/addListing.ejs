@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <title>List Your Product</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+        <style>
+            body{
+                background-image: url(images/img1.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .container{
+                margin-top: 8%;
+            }
+            .row{
+                width: 35%;
+                margin: auto 25px auto auto;
+            }
+            form{
+                background: azure;
+                padding: 35px 30px;
+                border-radius: 20px;
+            }
+            h1{
+                padding-bottom: 10px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        
+            <div class="row">
+                <div >
+                    <form action="/wholeSellerListing" method="post" enctype="multipart/form-data">
+                    <h1 style ="text-align: center">Add To Your List</h1>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select class="form-control" name="meal" id="meal" onchange="changeCat(this);">
+                            <option value="">Select</option>
+                            <option value="fruits">fruits</option>
+                            <option value="vegetables">vegetables</option>
+                            <option value="spices">spices</option>
+                        </select>               
+                    </div>
+                    <div class="form-group">
+                        <label>Names</label>
+                        <select class="form-control" name="title" id="category" >
+                        <option value="">Select</option>
+                            <% if(1){ %>
+                                <% for(var i=0;i<fruit.length;i++){ %>
+                                    <!-- <option value="">Select</option> -->
+                                    <option value=""><%= fruit[i] %></option>
+                                <% } %>
+                            <% } else if(2){ %>
+                                <% for(var i=0;i<vegetable.length;i++){ %>
+                                    <!-- <option value="">Select</option> -->
+                                    <option value=""><%= vegetable[i] %></option>
+                                <% } %>
+                            <% } else if(3){ %>
+                                <% for(var i=0;i<spice.length;i++){ %>
+                                    <!-- <option value="">Select</option> -->
+                                    <option value=""><%= spice[i] %></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (Rs.) </label>
+                        <input type='text' name='price'>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity (Kg) </label>
+                        <input type="number" min="1" name="stock">
+                    </div>
+                    <div class="form-group">
+                        <label>Upload File</label>
+                        <input type="file"  id="file" name="img" accept=""/> 
+                    </div>
+                    <div class="form-group">    
+                        <button class="btn btn-lg btn-success btn-block">Submit</button>
+                    </div>
+                    <div class="form-group">
+                        <a href="/index.html" class="btn btn-lg btn-success btn-block">Home</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+  
+            
+<!--
+            <select name="meal" id="meal" onchange="changeCat(this);">
+                <option value="">Select</option>
+                <option value="fruits">fruits</option>
+                <option value="vegetables">vegetables</option>
+                <option value="spices">spices</option>
+            </select>
+
+            <select name="category" id="category" size="5">
+                <option value="">Select</option>
+            </select>
+-->
+
+        <script>
+            var x = "<%= fruit %>";
+            console.log(x);
+              var fruit = ("<%- fruit %>").split(",");
+               var vegetable = ("<%= vegetable %>").split(",");
+               var spice = ("<%= spice %>").split(","); 
+               var changeCat = function changeCat(firstList) {
+                   var newSel = document.getElementById("category");
+                   //if you want to remove this default option use newSel.innerHTML=""
+                   newSel.innerHTML="<option value=\"\">Select</option>"; // to reset the second list everytime
+                   var opt;
+
+                   //test according to the selected value
+                   switch (firstList.options[firstList.selectedIndex].value) {
+                       case "fruits":
+                           for (var i=0; len=fruit.length, i<len; i++) {
+                               opt = document.createElement("option");
+                               opt.value = fruit[i];
+                               opt.text = fruit[i];
+                               newSel.appendChild(opt);
+                           }
+                           break;
+                       case "vegetables":
+                           for (var i=0; len=vegetable.length, i<len; i++) {
+                               opt = document.createElement("option");
+                               opt.value = vegetable[i];
+                               opt.text = vegetable[i];
+                               newSel.appendChild(opt);
+                           }
+                       break;
+                       case "spices":
+                           for (var i=0; len=spice.length, i<len; i++) {
+                               opt = document.createElement("option");
+                               opt.value = spice[i];
+                               opt.text = spice[i];
+                               newSel.appendChild(opt);
+                       }
+                       break;
+                   }
+               }
+        </script>
+    </body>
+</html>

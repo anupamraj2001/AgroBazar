@@ -1,0 +1,91 @@
+<!-- views/login.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>E-Mandi</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+		body 		{ padding-top:80px;
+                        /* background-image: url(images/img7.jpg); */
+                        /* background-image: url(../vegies-bg.jpg); */
+                           background-image: url(https://i.pinimg.com/736x/79/cd/cb/79cdcbec7a9a2c2ad5d737c498d1b52f.jpg);
+                           /* background-size: contain; */
+                        /* background-image: url(https://thumbs.dreamstime.com/b/pack-vegetables-design-cartoon-tomato-onion-chili-cucumber-carrot-peppers-turnip-mushroom-editable-vector-pack-vegetables-design-116515238.jpg); */
+                        background-position: center;
+                        background-size: cover;
+                    }      
+        .col-sm-6{
+            /* background: azure; */
+            position:relative;
+            top:10%;
+            border-radius: 30px;
+            margin-top: 5%;
+            height: 450px;
+            margin-left: 160px;
+            /* border:1px solid black; */
+            /* padding:10px; */
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        .container{
+            width: 750px;
+            margin-right: 25%;
+            margin-top: 1%;
+            position: relative;
+        }
+
+        button{
+            margin-top:10px;
+            margin-bottom:20px;
+            margin-left:10px;
+        }
+        a{
+            color:#AA2B1D;
+        }
+        .form-group{
+            padding:2px 10px;
+        }
+
+        p{
+            margin-left:10px;
+        }
+        
+	</style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <!-- <span class="fa fa-sign-in"></span> -->
+            <h1 style="padding:10px 10px"> Login</h1>
+
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+
+            <!-- LOGIN FORM -->
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <!-- <div class="form-group">
+                    <label>Remember Me</label>
+                    <input type="checkbox" class="form-control" name="remember" value="yes">
+                </div> -->
+
+                <button type="submit" class="btn btn-success btn-lg">Login</button>
+            </form>
+
+            <hr>
+
+            <p><b>Need an account? </b><a href="/signup">Signup</a></p>
+            <p><b>Or go </b><a href="/">Home</a></p>
+        </div>
+    </div>
+</body>
+</html>

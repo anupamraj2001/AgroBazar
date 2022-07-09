@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>E-Mandi </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+		<link rel="stylesheet" href="css/animate.css">
+		
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <!-- <a class="navbar-brand" href="#">Kissan Mandi</a> -->
+	      <a class="navbar-brand" href="index.html">
+					<% if(req.user == undefined){ %>
+						AGRO Bazaar
+						<% } else{%>
+								<%= req.user.username %>
+							<% } %>
+
+				</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+<!--
+	          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="shop.html">Shop</a>
+                <a class="dropdown-item" href="product-single.html">Single Product</a>
+                <a class="dropdown-item" href="cart">Cart</a>
+								<a class="dropdown-item" href="checkout.html">Checkout</a>
+								<%if((authenticated<=0)){%>
+										<a class="dropdown-item" href="/login">Login</a>
+								<% } else {%>
+										<a class="dropdown-item" href="/logout">Signout</a>
+										<% if(req.user.role != "Civilian") { %>
+										<a href="/wholeSellerListing" class="dropdown-item">List Product</a>
+                                        <a href="/profile" class="dropdown-item">Profile</a>
+										 <div class="rating">
+										<% } %>
+                    <a href="/profile" class="dropdown-item">Profile</a>
+										<!-- <div class="rating">
+												<p class="text-right">
+													<span class="ion-ios-star-outline"></span>
+													<span class="ion-ios-star-outline"></span>
+													<span class="ion-ios-star-outline"></span>
+													<span class="ion-ios-star-outline"></span>
+													<span class="ion-ios-star-outline"></span>
+												</p>
+											</div> 
+								<% } %>
+              </div>
+
+            </li>
+-->
+	          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+	          <!-- <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li> -->
+						<!-- <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li> -->
+						<%if((authenticated<=0)){%>
+							<li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+				        <% } else {%>
+										<li class="nav-item"><a href="/logout" class="nav-link">Signout</a></li>
+										<% if(req.user.role != "Civilian"){ %>
+											<li class="nav-item"><a href="/wholeSellerListing" class="nav-link">Post</a></li>
+										<% } %>
+                            <li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>  
+                            <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span></a></li>
+				        <% } %>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+		
+		<div class="hero-wrap js-fullheight">
+      <!-- <div class="overlay"></div> -->
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-11 ftco-animate text-center">
+            <h1>THE ONLY BAZAAR YOU NEED</h1>
+            <h2><span>ONE STOP SOLUTION TO AGRICULTURE MANAGEMENT SYSTEM</span></h2>
+          </div>
+          <div class="mouse">
+						<a href="#" class="mouse-icon">
+							<div class="mouse-wheel"><span class="ion-ios-arrow-down"></span></div>
+						</a>
+					</div>
+        </div>
+      </div>
+    </div>
+
+
+		<div class="goto-here"></div>
+		<% if( req.user != undefined ) { %>
+			<% if(req.user.role != "Civilian"){ %> 
+
+	<br>
+      
+    <section class="ftco-section ftco-product">
+    	<div class="container">
+    		<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<h1 class="big">Your Listings</h1>
+            <h2 class="mb-4">Your Listings</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class=" product-slider owl-carousel ftco-animate">
+    					<% for(var i=0;i<results.length;i++){ %>
+								<% if(req.user != undefined){ %>
+									<% if(results[i].username == req.user.username){ %>
+										<div class="item">
+												<div class="card product">    
+													<a href="#" class="img-prod"><img class="img-fluid" src="/public/images/upload_images/<%= results[i].image %>" alt="Colorlib Template">
+														<!-- <span class="status">30%</span> -->
+													</a>
+													<div class="text pt-3 px-3">
+														<h3><a href="#"> <%= results[i].title %></a></h3>
+														<div class="d-flex">
+															<div class="pricing">
+																<p class="price"><span class="price-sale">₹<%= results[i].price %>/kg</span></p>
+																<p class="price"><span class="price-sale">Qty: <%= results[i].stock %>kgs</span></p>
+
+															</div>
+															<a href="/updateListing/<%= results[i].title %>/<%= results[i].price %>/<%= results[i].stock %>"><button class="btn btn-success btn-lg">Update</button></a>
+															<a href="/deleteListing/<%= results[i].title %>/<%= results[i].price %>/<%= results[i].stock %>"><button class="btn btn-basic btn-lg">Delete</button></a>
+															<!-- <div class="rating">
+																<p class="text-right">
+																	<span class="ion-ios-star-outline"></span>
+																	<span class="ion-ios-star-outline"></span>
+																	<span class="ion-ios-star-outline"></span>
+																	<span class="ion-ios-star-outline"></span>
+																	<span class="ion-ios-star-outline"></span>
+																</p>
+															</div> -->
+														</div>
+													</div>
+												</div>
+											</div>
+											<% } %>
+									<% } %>
+							<% } %>
+							<% } %>
+							<% } %>
+    			</div>
+    		</div>
+            </div>
+    	</div>
+    </section>
+      
+      <br>
+      <br>
+
+    <section id="about" class="ftco-section ftco-no-pb ftco-no-pt bg-light">
+			<div class="container">
+				<div class="row">
+					<!-- <div class="col-md-5 pb-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/img3.jpg); box-shadow: 10px 10px  5px 5px #aaaaaa; margin-top: 3px;">
+<!--
+						<a href="https://vimeo.com/45830194" class="icon popup-vimeo d-flex justify-content-center align-items-center">
+							<span class="icon-play"></span>
+						</a>
+-->
+					</div>
+					<!-- <img src="../views//images//banana.jpg" style="float:left"> -->
+					<div class="col-md-10 py-5 wrap-about pb-md-5 ftco-animate">
+	          <div class="heading-section-bold mb-5 mt-md-5">
+	          	<div class="ml-md-0">
+		            <h2 class="mb-4"><span>AGRO BAZAAR</span></h2>
+	            </div>
+	          </div>
+	          <div class="pb-md-5">
+                            <p>AgroBazar is online platform where farmer can sell their agri produce via internet through auction. </p>
+							<p>In the traditional mandi system, farmers generally procure very less price for their crops as they has to pass through various intermediaries at the physical marketplace. This not only adds costs but also handling costs.</p>
+							<p>In addition, the famer has to face obstacles in form of multiple tax levies and licenses and weak logistics and infrastructure in India.</p>
+                            <!-- <p>With introduction of NAM transparency will be introduced in the marketing system, and market will be regulated. It will enable participation and benefits for the entire agri value chain, from farmer to consumer. There will be creation of high-end warehouses just near to production clusters.</p> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- <div class = 'container'>
+			<div class = 'row'>
+				<div class="col-3">
+
+				</div>
+				<div class="">
+
+				</div>
+			</div>
+		</div> -->
+
+
+		
+    <section id="shop" class="ftco-section bg-light">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+						
+<!--          	<h1 class="big">Products</h1>-->
+						<h2 class="mb-4">Our Products</h2>
+						<% if(req.user !=undefined){ %>
+							<% if(req.user.role == "Farmer"){ %>
+								<div>Not buyable by FARMER</div>
+							<%} else { %>
+                                <div>
+                                    
+                                </div> 
+								<% } %>
+						<% } %>
+                        <button type="submit" class="btn btn-basic btn-lg"><a href="viewProducts" style="margin-right: 0"> View All</a></button>
+          </div>
+				</div>   		
+    	</div>
+    	<div class="container-fluid">
+    		<div class="row">
+					
+					<% for(var i=0;i< results.length;i++){ %>
+						<% if(req.user == undefined){ %>
+							<div class="col-sm col-md-6 col-lg ftco-animate">
+								<div class="product">
+									<a href="#" class="img-prod"><img class="img-fluid" src="/public/images/upload_images/<%= results[i].image %>" alt="Colorlib Template"></a>
+									<div class="text py-3 px-3">
+										<h3><a href="#" name=<%= results[i].title %> class="resultTitle"> <%= results[i].title %></a></h3>
+										<h3><a href="#" name=<%= results[i].username %>>Sold By: <%= results[i].username %></a></h3>
+										<div class="d-flex">
+											<div class="pricing">
+												<a class="price resultPrice" name=<%= results[i].price %>><span>₹<%= results[i].price %></span></a>
+											</div>
+										</div>
+										<hr>
+										<p class="bottom-area d-flex"></p>
+									
+										</p>
+									
+									</div>
+								</div>
+							</div>
+						<% } else if(req.user.role == "Farmer"){%>
+							<% } else if(req.user.role == "Wholeseller") { %>
+							<% if(req.user.username != results[i].username && results[i].role=="Farmer"){ %>
+								<div class="col-sm col-md-6 col-lg ftco-animate">
+									<div class="product">
+										<a href="#" class="img-prod"><img class="img-fluid" src="/public/images/upload_images/<%= results[i].image %>" alt="Colorlib Template"></a>
+										<div class="text py-3 px-3">
+											<h3><a href="#" name=<%= results[i].title %> class="resultTitle"> <%= results[i].title %></a></h3>
+											<h3><a href="#" name=<%= results[i].username %>>Sold By: <%= results[i].username %></a></h3>
+											<div class="d-flex">
+												<div class="pricing">
+													<a class="price resultPrice" name=<%= results[i].price %>><span>₹<%= results[i].price %></span></a>
+												</div>
+											</div>
+											<hr>
+											<p class="bottom-area d-flex"></p>
+											<form action="/makeTransaction/<%= results[i].title %>/<%= results[i].username %>/<%= results[i].role %>/<%= results[i].price %>/<%= results[i].image %>" method="POST">
+                                                <label>Quantity</label>
+
+                                                <div >
+                                                    <input style="width:50px" type="number" name="quantity" max="<%= results[i].stock %>" min="1" required>
+												<button type="submit" class="btn btn-success" style="margin-left: 10%;">Add to cart<span><i class="ion-ios-add ml-1"></i></span></button> 
+                                                </div>
+												
+											</form>
+											</p>
+										
+										</div>
+									</div>
+								</div>
+								<% } %>
+							
+
+
+							<% } else if(req.user.role == "Retailer") { %>
+								<% if(req.user.username != results[i].username && results[i].role=="Wholeseller"){ %>
+									<div class="col-sm col-md-6 col-lg ftco-animate">
+											<div class="product">
+												<a href="#" class="img-prod"><img class="img-fluid" src="/public/images/upload_images/<%= results[i].image %>" alt="Colorlib Template"></a>
+												<div class="text py-3 px-3">
+													<h3><a href="#" name=<%= results[i].title %> class="resultTitle"> <%= results[i].title %></a></h3>
+													<h3><a href="#" name=<%= results[i].username %>>Sold By: <%= results[i].username %></a></h3>
+													<div class="d-flex">
+														<div class="pricing">
+															<a class="price resultPrice" name=<%= results[i].price %>><span>₹<%= results[i].price %></span></a>
+														</div>
+													</div>
+													<hr>
+													<p class="bottom-area d-flex"></p>
+													<form action="/makeTransaction/<%= results[i].title %>/<%= results[i].username %>/<%= results[i].role %>/<%= results[i].price %>/<%= results[i].image %>" method="POST">
+                                                                                                            <label>Quantity</label>
+
+                                                        <div>
+                                    
+                                                        
+                                                            <input style="width:50px" type="number" name="quantity" max="<%= results[i].stock %>" min="1" required>
+														<button type="submit" class="row1 btn btn-success" style="margin-left: 10%;">Add to cart<span><i class="ion-ios-add ml-1"></i></span></button>
+                                                        </div>
+														 
+													</form>
+													</p>
+												
+												</div>
+											</div>
+										</div>
+									<% } %>
+
+								<% } else if(req.user.role == "Civilian") { %>
+									<% if(req.user.username != results[i].username && (results[i].role=="Wholeseller" || results[i].role=="Retailer")){ %>
+										<div class="col-sm col-md-6 col-lg ftco-animate">
+												<div class="product">
+													<a href="#" class="img-prod"><img class="img-fluid" src="/public/images/upload_images/<%= results[i].image %>" alt="Colorlib Template"></a>
+													<div class="text py-3 px-3">
+														<h3><a href="#" name=<%= results[i].title %> class="resultTitle"> <%= results[i].title %></a></h3>
+														<h3><a href="#" name=<%= results[i].username %>>Sold By: <%= results[i].username %></a></h3>
+														<div class="d-flex">
+															<div class="pricing">
+																<a class="price resultPrice" name=<%= results[i].price %>><span>₹<%= results[i].price %></span></a>
+															</div>
+														</div>
+														<hr>
+														<p class="bottom-area d-flex"></p>
+														<form action="/makeTransaction/<%= results[i].title %>/<%= results[i].username %>/<%= results[i].role %>/<%= results[i].price %>/<%= results[i].image %>" method="POST">
+                                                                                                                <label>Quantity</label>
+
+															<div >
+                                                            
+                                                                <input style="width:50px" type="number" name="quantity" max="<%= results[i].stock %>" min="1" required>
+															<button type="submit" class="row1 btn btn-success" style="margin-left: 10%;">Add to cart<span><i class="ion-ios-add ml-1"></i></span></button> 
+                                                            </div>
+														</form>
+														</p>
+													
+													</div>
+												</div>
+											</div>
+										<% } %>
+									<% } %>
+						<% } %>
+					
+    			<!-- <div class="col-sm col-md-6 col-lg ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template"></a>
+    					<div class="text py-3 px-3">
+    						<h3><a href="#">Young Woman Wearing Dress</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span>$120.00</span></p>
+		    					</div>
+		    					<div class="rating">
+	    							<p class="text-right">
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    							</p>
+	    						</div>
+	    					</div>
+	    					<hr>
+    						<p class="bottom-area d-flex">
+    							<a hreAngelBeatsf="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+    							<a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-sm col-md-6 col-lg ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template"></a>
+    					<div class="text py-3 px-3">
+    						<h3><a href="#">Young Woman Wearing Dress</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span>$120.00</span></p>
+		    					</div>
+		    					<div class="rating">
+	    							<p class="text-right">
+	    								<span class="ion-ios-star-outline"></span>
+	    								<sAngelBeatspan class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    							</p>
+	    						</div>AngelBeats
+	    					</div>
+	    					<hr>
+    						<p class="bottom-area d-flex">
+    							<a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+    							<a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+    						</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-sm col-md-6 col-lg ftco-animate">
+    				<div class="product">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template"></a>
+    					<div class="text py-3 px-3">
+    						<h3><a hAngelBeatsref="#">Young Woman Wearing Dress</a></h3>
+    						<div claAngelBeatsss="d-flex">
+    							<div cAngelBeatsAngelBeatslass="pricing">
+		    						<p class="price"><span>$120.00</span></p>
+		    					</div>
+		    					<div class="rating">
+	    							<p class="text-right">
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    								<span class="ion-ios-star-outline"></span>
+	    							</p>
+	    						</div>
+	    					</div>
+	    					<hr>
+    						<p class="bottom-area d-flex">
+    							<a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+    							<a hreAngelBeatsf="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+    						</p>AngelBeats
+    					</div>AngeAngelBeatslBeats
+    				</div>
+    			</div> -->
+    		</div>
+    	</div>
+    </section>
+
+    <!-- <section class="ftco-section ftco-section-more img" style="background-image: url(images/bg_5.jpg);">
+    	<div class="container">
+    		<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section ftco-animate">
+          	<h2>Putting our heart & soul into the field</h2>
+          </div>
+        </div>
+    	</div>
+    </section> -->
+
+<!--
+    <section class="ftco-section testimony-section bg-light">
+      <div class="container">
+				<div class="row AngelBeatsjustify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<h1 class="big">Testimony</h1>
+          </div>
+        </div>    		
+        <div class="row justify-content-center">
+          <div class="col-md-8 ftco-animate">
+          	<div class="row ftco-animate">
+		          <div class="col-md-12">
+		            <div class="carousel-testimony owl-carousel ftco-owl">
+		              <div class="item">
+		                <div class="testimony-wrap py-4 pb-5">
+		                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+		                    <span class="quote d-flex align-items-center justify-content-center">
+		                      <i class="icon-quote-left"></i>
+		                    </span>
+		                  </div>
+		                  <div class="text text-center">
+		                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Customer</span>
+		                  </div>
+		                </div>
+		              </div>
+		              <div class="item">
+		                <div class="testimony-wrap py-4 pb-5">
+		                  <div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
+		                    <span class="quote d-flex align-items-center justify-content-center">
+		                      <i class="icon-quote-left"></i>
+		                    </span>
+		                  </div>
+		                  <div class="text text-center">
+		                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Customer</span>
+		                  </div>
+		                </div>
+		              </div>
+		              <div class="item">
+		                <div class="testimony-wrap py-4 pb-5">
+		                  <div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
+		                    <span class="quote d-flex align-items-center justify-content-center">
+		                      <i class="icon-quote-left"></i>
+		                    </span>
+		                  </div>
+		                  <div class="text text-center">
+		                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Customer</span>
+		                  </div>
+		                </div>
+		              </div>
+		              <div class="item">
+		                <div class="testimony-wrap py-4 pb-5">
+		                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+		                    <span class="quote d-flex align-items-center justify-content-center">
+		                      <i class="icon-quote-left"></i>
+		                    </span>
+		                  </div>
+		                  <div class="text text-center">
+		                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Customer</span>
+		                  </div>
+		                </div>
+		              </div>
+		              <div class="item">
+		                <div class="testimony-wrap py-4 pb-5">
+		                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+		                    <span class="quote d-flex align-items-center justify-content-center">
+		                      <i class="icon-quote-left"></i>
+		                    </span>
+		                  </div>
+		                  <div class="text text-center">
+		                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Customer</span>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+          </div>
+        </div>
+      </div>
+    </section>
+-->
+
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h1 class="big">Concern</h1>
+            <h2>We Care For You</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/img18.jpg');">
+              </a>
+              <div class="text mt-3 d-block">
+                <h3 class="heading mt-3">Retailer<br>
+                    A business or company that sells to the consumer directly.<a href="#"></a></h3>
+                <!-- <div class="meta mb-3">
+                  <div><a href="#">April 22, 2019</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/img20.jpg');">
+              </a>
+              <div class="text mt-3">
+                <h3 class="heading mt-3"><a href="#">Farmer<br>
+                    A farmer who raises only crops will be responsible for preparing land for planting, caring for the crops and harvesting.</a></h3>
+                <!-- <div class="meta mb-3">
+                  <div><a href="#">April 22, 2019</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/img19.jpg');">
+              </a>
+              <div class="text mt-3">
+                <h3 class="heading mt-3"><a href="#">Customers<br>
+                    A person who buys goods or services from a shop or business.</a></h3>
+                <!-- <div class="meta mb-3">
+                  <div><a href="#">April 22, 2019</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/img13.jpg);">
+    	<div class="container">
+    		<div class="row justify-content-center py-5">
+    			<div class="col-md-10">
+		    		<div class="row">
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="10000">0</strong>
+		                <span>Happy Customers</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="100">0</strong>
+		                <span>Branches</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="1000">0</strong>
+		                <span>Partner</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center">
+		              <div class="text">
+		                <strong class="number" data-number="100">0</strong>
+		                <span>Awards</span>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section> -->
+<!--
+
+    <section class="ftco-section bg-light ftco-services">
+    	<div class="container">
+    		<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+            <h1 class="big">Services</h1>
+            <h2>We want you to express yourself</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="icon d-flex justify-content-center align-items-center mb-4">
+            		<span class="flaticon-002-recommended"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Refund Policy</h3>
+                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-4 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="icon d-flex justify-content-center align-items-center mb-4">
+            		<span class="flaticon-001-box"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Premium Packaging</h3>
+                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-md-4 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="icon d-flex justify-content-center align-items-center mb-4">
+            		<span class="flaticon-003-medal"></span>
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Superior Quality</h3>
+                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+              </div>
+            </div>      
+          </div>
+        </div>
+    	</div>
+    </section>
+-->
+		
+		<!-- <section class="ftco-section-parallax">
+      <div class="parallax-img d-flex align-items-center">
+        <div class="container">
+          <div class="row d-flex justify-content-center py-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+            	<h1 class="big">Subscribe</h1>
+              <h2>Subcribe to our Channel</h2>
+              <div class="row d-flex justify-content-center mt-5">
+                <div class="col-md-8">
+                  <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                      <input type="text" class="form-control" placeholder="Enter email address">
+                      <input type="submit" value="Subscribe" class="submit px-3">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <footer id="contact" class="ftco-footer bg-light ftco-section">
+      <div class="container">
+		<div class="row">
+          <div class="col-md-12 text-center">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Agro Bazaar</h2>
+              <ul class="ftco-footer-social list-unstyled float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <!-- <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Menu</h2>
+              <ul class="list-unstyled">
+                <li><a href="#shop" class="py-2 d-block">Shop</a></li>
+                <li><a href="#about" class="py-2 d-block">About</a></li>
+                <li><a href="#contact" class="py-2 d-block">Contact Us</a></li>
+              </ul>
+            </div>
+          </div> -->
+          <!-- <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Help</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+            </div> -->
+          </div>
+          <!-- <div class="col-md">
+            <div class="ftco-footer-widget mb-4 float-right">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">IIIT Allahabad, Prayagraj</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 888 888 8888</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">iit2020040@iiita.ac.in</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+<!--
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						   Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
+						</p>-->
+              
+              
+<p>Made With <i class="icon-heart color-danger" aria-hidden="true"></i> By Group No 56</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		
+	</script>
+    
+  </body>
+</html>

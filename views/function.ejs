@@ -1,0 +1,8 @@
+<%
+$(document).ready(function () {
+    $('#language').change(function () {
+        var doc = document.getElementById("language");
+        alert("You selected " + doc.options[doc.selectedIndex].value);
+    });
+});
+%>

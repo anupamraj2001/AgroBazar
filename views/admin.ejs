@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/admin.css">
+    </head>
+    <body>
+
+        <a class="signout" href="/logout">Signout</a>
+        <h1>users</h1>
+       
+        <% if((users_data.length>0)) { %>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <th scope="col">Role</th>
+                <th scope="col">State</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i=0;i < (users_data.length);i++) { %>  
+              <tr>
+                <th scope="row"><%= users_data[i].id %></th>
+                <td><%= users_data[i].username %></td>
+                <td><%= users_data[i].password %></td>
+                <td><%= users_data[i].role %></td>
+                <td><%= users_data[i].state %></td>
+              </tr>
+              <% } %>
+            
+            </tbody>
+          </table>
+
+          <% }else{ %>
+            <p>There are no users.</p>
+           <% } %> 
+
+           <h1>Wholeseller</h1>
+
+           <% if((wholesellers.length>0)) { %>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0;i < (wholesellers.length);i++) { %>  
+                  <tr>
+                    <th scope="row"><%= wholesellers[i].id %></th>
+                    <td><%= wholesellers[i].title %></td>
+                    <td><%= wholesellers[i].stock %></td>
+                    <td><%= wholesellers[i].price %></td>
+                  </tr>
+                  <% } %>
+                
+                </tbody>
+              </table>
+    
+              <% }else{ %>
+                <p>There are no wholesellers.</p>
+               <% } %> 
+
+               <h1>Retailer</h1>
+
+               <% if((retailers.length>0)) { %>
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(let i=0;i < (retailers.length);i++) { %>  
+                      <tr>
+                        <th scope="row"><%= retailers[i].id %></th>
+                        <td><%= retailers[i].title %></td>
+                        <td><%= retailers[i].stock %></td>
+                        <td><%= retailers[i].price %></td>
+                      </tr>
+                      <% } %>
+                    
+                    </tbody>
+                  </table>
+        
+                  <% }else{ %>
+                    <p>There are no retailers.</p>
+                   <% } %> 
+
+                   <h1>Farmer</h1>
+
+                   <% if((farmers.length>0)) { %>
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let i=0;i < (farmers.length);i++) { %>  
+                          <tr>
+                            <th scope="row"><%= farmers[i].id %></th>
+                            <td><%= farmers[i].title %></td>
+                            <td><%= farmers[i].stock %></td>
+                            <td><%= farmers[i].price %></td>
+                          </tr>
+                          <% } %>
+                        
+                        </tbody>
+                      </table>
+            
+                      <% }else{ %>
+                        <p>There are no farmers.</p>
+                       <% } %> 
+
+                       <hr>
+
+                       <div class="query_forms">
+                        <form class="insert_form" method="post" action="/insertDatabase">
+                              <div class="form-group">
+                                  <label for="table_name">Table name</label>
+                                  <input type="text" class="form-control" id="table_name"  name="table_name" placeholder="Enter table name">
+                              </div>
+                              <div class="form-group">
+                                <label for="id_num">ID</label>
+                                <input type="text" class="form-control" id="id_num" name="id" placeholder="Enter ID No.">
+                            </div>
+                              
+                              <div class="form-group">
+                                      <label for="title_name">Title name</label>
+                                      <input type="text" class="form-control" id="title_name" name="title_name" placeholder="Enter item title">
+                                  </div>
+                             
+                              <div class="form-group">
+                                <label for="stock">Stock</label>
+                                <input type="text" class="form-control" id="stock" name="stock" placeholder="Enter stock">
+                            </div>
+                              <div class="form-group">
+                                  <label for="price">Price</label>
+                                  <input type="text" class="form-control" id="price" name="price" placeholder="Enter price">
+                              </div>
+                                  
+                              
+                              <button type="submit" class="btn btn-primary text-center">Insert</button>
+                       </form>
+                       
+                       <form class="update_form" method="post" action="/updateDatabase">
+                            <div class="form-group">
+                                <label for="table_name">Table name</label>
+                                <input type="text" class="form-control" id="table_name"  name="table_name" placeholder="Enter table name">
+                            </div>
+                            <div class="form-group">
+                                <label for="column_name">Column name</label>
+                                <input type="text" class="form-control" id="column_name" name="column_name" placeholder="Enter column name">
+                            </div>
+                            <div class="form-group">
+                                    <label for="title_name">Title name</label>
+                                    <input type="text" class="form-control" id="title_name" name="title_name" placeholder="Enter title">
+                                  </div>
+                            <div class="form-group">
+                                <label for="id_num">ID</label>
+                                <input type="text" class="form-control" id="id_num" name="id" placeholder="Enter ID No.">
+                              </div>
+                              
+                            <div class="form-group">
+                                <label for="updated_value">Updated Value</label>
+                                <input type="text" class="form-control" id="updated_value" name="updated_value" placeholder="Enter new value">
+                              </div>
+                                
+                            
+                            <button type="submit" class="btn btn-primary text-center">Update</button>
+                       </form>
+                       
+                       <form class="delete_form" method="post" action="/deleteDatabase">
+                            <div class="form-group">
+                                <label for="table_name">Table name</label>
+                                <input type="text" class="form-control" id="table_name"  name="table_name" placeholder="Enter table name">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="id_num">ID</label>
+                              <input type="text" class="form-control" id="id_num" name="id" placeholder="Enter ID No.">
+                            </div>
+    
+                            <div class="form-group">
+                                    <label for="title_name">Title name</label>
+                                    <input type="text" class="form-control" id="title_name" name="title_name" placeholder="Enter title">
+                                </div>
+                            
+                            <button type="submit" class="btn btn-primary text-center">Delete</button>
+                     </form>       
+                       </div>
+
+                    
+          
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
