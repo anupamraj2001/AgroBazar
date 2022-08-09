@@ -12,7 +12,8 @@
 
 
 * AgroBazar is an e-kart website designed specially for Agricultural products like fresh vegteables,fruits and spices.
-* It maintains the traditional hierarchy of farmer --> wholeseller-->retailer-->consumer and provides an easy way to tradeoff between them.
+* It allows consumer to directly buy from farmer along with maintaining the traditional hierarchy of farmer --> wholeseller-->retailer-->consumer in case farmer didnot have delivery facility.
+* provides an easy way to tradeoff between sellers and buyers.
 
 
 <!-- FEATURES OF ONESTOP -->
@@ -35,12 +36,19 @@
 
 <!-- DEMO -->
 ## SnapShots:
+#### HomePage:
 <img src="https://github.com/anupamraj2001/AgroBazar/blob/main/Screenshot%20(3890).png" width="2000px;" alt=""/><br>
+#### Login Page
 <img src="https://github.com/anupamraj2001/AgroBazar/blob/main/Screenshot%20(3891).png" width="2000px;" alt=""/><br>
+#### SignUp Page
 <img src="https://github.com/anupamraj2001/AgroBazar/blob/main/Screenshot%20(3892).png" width="2000px;" alt=""/><br>
+#### Product Enlisiting Page for Farmer/Wholeseller/Retailer
 <img src="https://github.com/anupamraj2001/AgroBazar/blob/main/Screenshot%20(3893).png" width="2000px;" alt=""/><br>
+#### Listing section of sellers
 <img src="https://github.com/anupamraj2001/AgroBazar/blob/main/Screenshot%20(3894).png" width="2000px;" alt=""/><br>
+#### Product section : All the products enlisted by other sellers(Farmer/wholeseller/Farmer) above its hierarhy.
 <img src="https://github.com/anupamraj2001/AgroBazar/blob/main/Screenshot%20(3895).png" width="2000px;" alt=""/><br>
+#### Cart Page For Buyers (Wholeseller/Retailer/consumer).
 <img src="https://github.com/anupamraj2001/AgroBazar/blob/main/Screenshot%20(3896).png" width="2000px;" alt=""/><br>
 
 <br>
