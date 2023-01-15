@@ -3,8 +3,8 @@ module.exports = {
     'connection': {
         'host': 'localhost',
         'user': 'root',
-        'password': '12345'
+        'password': '123456789'
     },
-	'database': 'my_schema',
+	'database': 'agrobazar',
     'users_table': 'users'
 };
